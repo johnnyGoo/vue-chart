@@ -1,5 +1,5 @@
 <template>
-  <canvas></canvas>
+  <canvas :width="width" :height="height"></canvas>
 </template>
 <script>
   import Chart from 'chart.js'
@@ -53,13 +53,18 @@
           }
         }
       },
+      width: {
+        default: 300
+      }, height: {
+        default: 150
+      },
       options: {
         type: Object
       }
     },
     data: function () {
       return {
-       // chart: null
+        // chart: null
       }
     },
     ready() {
@@ -71,7 +76,7 @@
       });
     },
     methods: {
-      updateData: function (o,n) {
+      updateData: function (o, n) {
         maxExtend(o, clone(n));
         this.chart.update()
       }
@@ -80,13 +85,13 @@
       'data': {
         deep: true,
         handler: function (val, oldVal) {
-          this.updateData(this.chart.config.data,this.data);
+          this.updateData(this.chart.config.data, this.data);
         }
       },
       'options': {
         deep: true,
         handler: function (val, oldVal) {
-          this.updateData(this.chart.config.options,this.options);
+          this.updateData(this.chart.config.options, this.options);
 
         }
       }

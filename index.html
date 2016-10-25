@@ -29,7 +29,9 @@
 <body>
 <div @click="update()" class="btn">update</div>
 <div @click="updateOptionsTitle()" class="btn"> updateOptionsTitle</div>
-<vue-chart type="doughnut" :data="data" :options="options"></vue-chart>
+<div style="width:300px;height:300px;float: left">
+  <vue-chart type="doughnut" width="300" height="300" :data="data" :options="options"></vue-chart>
+</div>
 
 </body>
 <script>
@@ -84,12 +86,13 @@
     },
     methods: {
       update: function (values) {
-        for(var i=0;i<this.data.datasets.length;i++){
-          this.data.datasets[i].data = [Math.random(),Math.random(),Math.random(),Math.random()];
+        for (var i = 0; i < this.data.datasets.length; i++) {
+          this.data.datasets[i].data = [Math.random(), Math.random(), Math.random(), Math.random()];
         }
+        this.options.rotation = Math.random() * 2 * Math.PI
       },
       updateOptionsTitle: function () {
-        this.options.title.text = 'title:'+Math.random();
+        this.options.title.text = 'title:' + Math.random();
       }
     },
     components: {VueChart}
